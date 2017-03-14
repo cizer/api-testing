@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 const app = express();
 
@@ -13,12 +12,10 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res) => {
   if (req.body.username === 'user1' && req.body.password === 'password1') {
-    return jwt.sign(req.body.username, 'superSecret', {}, (err, token) => {
-      res.status(200).send({
-        username: req.body.username,
-        token_type: 'Bearer',
-        access_token: token,
-      });
+    return res.status(200).send({
+      username: req.body.username,
+      token_type: 'Bearer',
+      access_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9',
     });
   }
   return res.status(401).send('Unauthorized');

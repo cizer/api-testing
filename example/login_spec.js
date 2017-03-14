@@ -26,6 +26,7 @@ describe('login', () => {
     });
 
     it('access token is defined', () => {
+      console.log(response.body.access_token);
       expect(response.body.access_token).toBeDefined();
     });
   });
